@@ -14,7 +14,7 @@ public:
         // }
         // return ans;
         
-        //two pointer //tc(nlogn for sort then linear)
+        //two pointer //tc(nlogn for sort then linear) //but actually better for larger inputs
         sort(begin(nums1),end(nums1));
         sort(begin(nums2),end(nums2));
         int m=nums1.size();
