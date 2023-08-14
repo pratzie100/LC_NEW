@@ -1,56 +1,44 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        // vector<int> secondary;
-        // set<int>S;
-        // vector<int> ans;
-        // S.insert(nums1.begin(),nums1.end());
-        // for(int i: S)
+        //O(n)
+        // unordered_set<int>s; //this is better than set (nlogn)
+        // unordered_set<int>s_one;
+        // s.insert(begin(nums1),end(nums1));
+        // s_one.insert(begin(nums2),end(nums2));
+        // vector<int>ans;
+        // for(int i:s_one)
         // {
-        //     secondary.push_back(i);
-        // }
-        // for(int i=0;i<secondary.size();i++)
-        // {
-        //     for(int j=0;j<nums2.size();j++)
-        //     {
-        //         if(secondary[i]==nums2[j])
-        //         {
-        //             ans.push_back(secondary[i]);
-        //             break;
-        //         }
-        //     }
+        //     if(s.count(i)>0)
+        //         ans.push_back(i);
         // }
         // return ans;
-        // vector<int> ans;
-        // int n=nums1.size();
-        // int m=nums2.size();
-        // sort(nums1.begin(),nums1.end()); //1,1,2,2
-        // sort(nums2.begin(),nums2.end());//2,2
-        // int i=0,j=0;
-        // while(i<n && j<m)
-        // {
-        //     if(nums1[i]==nums2[j])
-        //     {
-        //         if(ans.empty() || ans.back()!=nums1[i])
-        //             ans.push_back(nums1[i]);
-        //         i++;
-        //         j++;
-        //     }
-        //     else if(nums1[i]<nums2[j])
-        //         i++;
-        //     else
-        //         j++;
-        // }
-        // return ans;
-        unordered_set<int>s;
-        unordered_set<int>s_one;
-        s.insert(begin(nums1),end(nums1));
-        s_one.insert(begin(nums2),end(nums2));
+        
+        //two pointer //tc(nlogn for sort then linear)
+        sort(begin(nums1),end(nums1));
+        sort(begin(nums2),end(nums2));
+        int m=nums1.size();
+        int n=nums2.size();
+        int i=0,j=0;
         vector<int>ans;
-        for(int i:s_one)
+        while(i<m && j<n)
         {
-            if(s.count(i)>0)
-                ans.push_back(i);
+            if(nums1[i]==nums2[j])
+            {
+                //to skip duplicates
+                if(find(begin(ans),end(ans),nums1[i])==ans.end()) 
+                    ans.push_back(nums1[i]);
+                i++;
+                j++;
+            }
+            else if(nums1[i]<nums2[j])
+            {
+                i++;
+            }
+            else if(nums2[j]<nums1[i])
+            {
+                j++;
+            }
         }
         return ans;
     }    
