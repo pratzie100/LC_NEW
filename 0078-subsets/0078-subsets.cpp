@@ -8,9 +8,11 @@ public:
             ans.push_back(ds);
             return;
         }
+        //pick case:Include the current number in the subset and proceed to the next index.
         ds.push_back(nums[ind]);
         solve(ind+1,ds,nums);
-        ds.pop_back();
+        //Notpick case:Exclude the current number in the subset and proceed to the next index.
+        ds.pop_back(); // Backtrack by removing the last element from the subset.
         solve(ind+1,ds,nums);
     }
     vector<vector<int>> subsets(vector<int>& nums) {
