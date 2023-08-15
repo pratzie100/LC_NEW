@@ -33,29 +33,29 @@ public:
         return head;
     }
     ListNode* partition(ListNode* head, int x) {
-        vector<int> ans;
+        vector<int> vec;
         ListNode* ptr=head;
         while(ptr!=nullptr)
         {
-            ans.push_back(ptr->val);
+            vec.push_back(ptr->val);
             ptr=ptr->next;
         }
-        vector<int>res;
-        for(int i=0;i<ans.size();i++)
+        vector<int>ans;
+        for(int i=0;i<vec.size();i++)
         {
-            if(ans[i]<x)
+            if(vec[i]<x)
             {
-                res.push_back(ans[i]);
+                ans.push_back(vec[i]);
             }
         }
-        for(int i=0;i<ans.size();i++)
+        for(int i=0;i<vec.size();i++)
         {
-            if(ans[i]>=x)
+            if(vec[i]>=x)
             {
-                res.push_back(ans[i]);
+                ans.push_back(vec[i]);
             }
         }
-        ListNode* start=vtoll(res);
+        ListNode* start=vtoll(ans);
         return start;
     }
 };
