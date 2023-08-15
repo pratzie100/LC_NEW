@@ -16,7 +16,8 @@ public:
 // Starting the fast pointer at head->next instead of head is crucial to ensure that there is an initial separation between the pointers. This initial separation is necessary so that the fast pointer can move ahead of the slow pointer and eventually enter the cycle. This allows the algorithm to correctly detect a cycle if one exists.
         while(slow!=fast)
         {
-            if(!fast || !fast->next) return false;
+            if(!fast || !fast->next) return false; // No cycle if the fast pointer reaches the end
+            
             //slow pointer moves one step at a time, while the fast pointer moves two steps at a time. If there is a cycle, the fast pointer will eventually catch up to the slow pointer, confirming the presence of a cycle. If there's no cycle, the fast pointer will reach the end of the linked list.
             slow=slow->next;
             fast=fast->next->next;
