@@ -20,4 +20,21 @@ public:
         solve(0,ds,nums);
         return ans;
     }
+
+//using bit manipulation
+    // vector<vector<int>>subsets(vector<int>& nums) {
+    //     int n=nums.size();
+    //     vector<vector<int>>ans;
+    //     for(int i=0;i<(1<<n);i++) //1<<n -> 2^n
+    //     {
+    //         vector<int>subset;
+    //         for(int j=0;j<n;j++) 
+    //         {
+    //             if (i&(1<<j)) //checks if the j-th bit of the integer i is set to 1 or 0.
+    //                 subset.push_back(nums[j]); 
+    //         }
+    //         ans.push_back(subset);
+    //     }
+    //     return ans;
+    // }
 };
