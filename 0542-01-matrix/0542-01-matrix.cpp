@@ -10,7 +10,7 @@ public:
         {
             for(int j=0;j<n;j++)
             {
-                if(mat[i][j]==0)
+                if(mat[i][j]==0 && visited[i][j]==false) //push all 0's as starting point with distance 0
                 {
                     q.push({{i,j},0});
                     visited[i][j]=true;
@@ -30,7 +30,7 @@ public:
                 int newj=frontj+moves[i][1];
                 if(newi>=0 && newi<m && newj>=0 && newj<n && mat[newi][newj]==1 && visited[newi][newj]==false)
                 {
-                    q.push({{newi,newj},dis+1});
+                    q.push({{newi,newj},dis+1}); //increase distance by 1 from parent's distance
                     visited[newi][newj]=true;
                     ans[newi][newj]=dis+1;
                 }
