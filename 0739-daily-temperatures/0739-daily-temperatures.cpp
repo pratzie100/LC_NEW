@@ -13,12 +13,14 @@ public:
             //         ans[i]=s.top()-i;
             //     }
             // }
+            
+            //i is current inspected element index
             while(!s.empty() && nums[s.top()]<=nums[i])
             {
-                s.pop();
+                s.pop(); //warmer temp. not at top of stack so pop
             }
-            if(!s.empty()) ans[i]=s.top()-i;
-            s.push(i);
+            if(!s.empty()) ans[i]=s.top()-i; //top is definitely next warmer temperature index..so find required difference 
+            s.push(i); 
         }
         return ans;        
     }
