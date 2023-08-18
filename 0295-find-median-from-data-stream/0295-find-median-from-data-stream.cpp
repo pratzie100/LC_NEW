@@ -1,26 +1,30 @@
 class MedianFinder {
 public:
+    priority_queue<int>maxheap;  // Holds the left half of numbers (lower values)
+    priority_queue<int,vector<int>,greater<int>> minheap;  // Holds the right half of numbers (higher values)
 
-    priority_queue<int>maxheap; // left half 
-    priority_queue<int,vector<int>,greater<int>>minheap; // right half
     MedianFinder() {
         
     }
     
     void addNum(int num) {
-        if(maxheap.empty() || num<=maxheap.top()) //push in left half
+        if(maxheap.empty() || num<=maxheap.top()) 
+        {
+            // If the new number is smaller or equal to the maximum in maxheap, insert into maxheap
             maxheap.push(num);
-        else  //push in right half
+        } 
+        else 
+        {
+            // Otherwise, insert into minheap
             minheap.push(num);
-
-        //tree left side titled,balance it
-        if(maxheap.size()>minheap.size()+1)
+        }
+        // Balance the trees if they become skewed
+        if(maxheap.size()>minheap.size()+1) 
         {
             minheap.push(maxheap.top());
             maxheap.pop();
-        }
-        //tree right side titled,balance it
-        else if(minheap.size()>maxheap.size()+1)
+        } 
+        else if(minheap.size()>maxheap.size()+1) 
         {
             maxheap.push(minheap.top());
             minheap.pop();
@@ -28,16 +32,21 @@ public:
     }
     
     double findMedian() {
-        if(minheap.size()==maxheap.size())
+        if(minheap.size()==maxheap.size()) 
         {
-            return ((minheap.top()+maxheap.top())/2.0);
-        }
-        else if(maxheap.size()>minheap.size())
+            // Both heaps have equal size, so the median is the average of their tops
+            return (minheap.top()+maxheap.top())/2.0;
+        } 
+        else if(maxheap.size()>minheap.size()) 
         {
+            // maxheap has more elements, so the median is the top of maxheap
             return maxheap.top();
-        }
-        else
+        } 
+        else 
+        {
+            // minheap has more elements, so the median is the top of minheap
             return minheap.top();
+        }
     }
 };
 
