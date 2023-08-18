@@ -1,8 +1,8 @@
 class Solution {
 public:
-    bool check(int i,string str)
+    bool check(int ind,string str)
     {
-        str.erase(i,1);
+        str.erase(ind,1);
         unordered_map<int,int>m;
         for(int i=0;i<str.size();i++)
         {
