@@ -28,7 +28,7 @@ public:
         ptr=head;
         while(ptr)
         {
-            m[ptr]->next=m[ptr->next];  //copy's next should point to real node's next's copy
+            m[ptr]->next=m[ptr->next]; //copy's next should point to real node's next's copy
             m[ptr]->random=m[ptr->random]; //copy's random should point to real node's random's copy
             ptr=ptr->next;
         }
