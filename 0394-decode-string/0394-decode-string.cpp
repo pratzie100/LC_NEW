@@ -31,9 +31,9 @@ public:
                 strStack.pop();
                 for(int j = 0; j < repeats; j++) 
                 {
-                    temp += ans;
+                    temp += ans; //here ans is previous substring build till now
                 }
-                ans = temp;
+                ans = temp; //updating ans as new substring so far
             }
             else //if aplhabet
             {
