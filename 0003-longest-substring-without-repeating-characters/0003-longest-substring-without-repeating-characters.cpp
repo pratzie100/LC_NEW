@@ -19,14 +19,24 @@ public:
         unordered_map<int,int>m;
         for(r=0;r<s.size();r++)
         {
-            while(m[s[r]]>0) //if already present
+            // while(m[s[r]]>0) //if already present
+            // {
+            //     ans=max(ans,r-l); //no need to do r-l+1 as r-l is required length 
+            //     m[s[l]]--;
+            //     l++;
+            // }
+            // m[s[r]]++;
+            
+            //other way
+            m[s[r]]++;
+            while(m[s[r]]>1) //if already present
             {
                 ans=max(ans,r-l); //no need to do r-l+1 as r-l is required length 
                 m[s[l]]--;
                 l++;
             }
-            m[s[r]]++;
         }
+        //if(ans==INT_MIN) return s.size();
         return max(ans,r-l);
         
     }
