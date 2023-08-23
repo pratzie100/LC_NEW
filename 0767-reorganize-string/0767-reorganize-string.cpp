@@ -1,7 +1,7 @@
 class Solution {
 public:
     string reorganizeString(string s) {
-        map<char,int>m;
+        unordered_map<char,int>m;
         for(int i=0;i<s.size();i++)
         {
             m[s[i]]++;
@@ -16,11 +16,10 @@ public:
                 maxch=i.first;
             }
         }
-        cout<<maxcnt<<" "<<maxch<<endl;
         if(maxcnt>(s.size()+1)/2) return "";
         string ans(s);
         int ind=0;
-        while(m[maxch]!=0)
+        while(m[maxch]!=0) 
         {
             ans[ind]=maxch;
             ind+=2;
