@@ -1,13 +1,6 @@
 class Solution {
 public:
     string reorganizeString(string s) {
-        /*
-Input
-"vvvlo"
-Output
-"lvovv"
-Expected
-"vlvov"*/
         map<char,int>m;
         for(int i=0;i<s.size();i++)
         {
