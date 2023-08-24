@@ -1,48 +1,33 @@
-class Solution // 100% faster
-{
+class Solution {
 public:
-    vector<string> fullJustify(vector<string> &words, int maxWidth)
-    {
-        // Vector to store the sentences
-        vector<string> ans;
-        int curr_len = 0, start = 0, end = -1;
-        for (string s : words)
+    vector<string> fullJustify(vector<string> &words, int maxWidth) {
+        vector<string>justifiedText;  // To store the final justified lines
+        vector<string>currentLine;    // To store words of the current line being processed
+        int lineWordLength = 0;        // To track the total length of words in the current line
+        
+        for (string word : words) 
         {
-            if ((end - start + 1) + curr_len + s.size() <= maxWidth)
-                curr_len += s.size(), end++;
-            else
+            if(word.size()+currentLine.size()+lineWordLength > maxWidth) 
             {
-                // Start the current line as the word at index start
-                string sentence = words[start];
-                int extra_space = maxWidth - curr_len, padding = extra_space / max(1, end - start);
-                // extra is the extra space that has to be adjusted so as to make the length equal to maxWidth
-                int extra = extra_space % max(1, end - start);
-                // Now add the words from 'start index + 1' to 'end index'
-                for (int i = start + 1; i <= end; i++)
+                for (int i = 0; i < maxWidth - lineWordLength; i++) 
                 {
-                    // Add the padding first
-                    for (int j = 0; j < padding; j++)
-                        sentence += " ";
-                    // Add the xtra padding, if needed
-                    if (extra)
-                        sentence += " ", extra--;
-                    sentence += words[i];
+                    currentLine[i % (currentLine.size() - 1 ? currentLine.size() - 1 : 1)] += ' ';
                 }
-                // Just in case the sentence has only one word
-                while (sentence.size() < maxWidth)
-                    sentence += " ";
-                ans.push_back(sentence);
-                // Set the current word as the starting point of the new line
-                start = end + 1, curr_len = s.size(), end++;
+                justifiedText.push_back("");
+                for (string s : currentLine) justifiedText.back() += s;
+                currentLine.clear();
+                lineWordLength = 0;
             }
+            currentLine.push_back(word);
+            lineWordLength += word.size();
         }
-        // Last line has to be dealt with a bit differently, i.e. left justified
-        string sentence = words[start];
-        for (int i = start + 1; i <= end; i++)
-            sentence += " " + words[i];
-        while (sentence.size() < maxWidth)
-            sentence += " ";
-        ans.push_back(sentence);
-        return ans;
+        
+        string lastLine = "";
+        for (string s : currentLine) lastLine += s + ' ';
+        lastLine = lastLine.substr(0, lastLine.size() - 1);  // remove trailing space
+        while (lastLine.size() < maxWidth) lastLine += ' ';
+        justifiedText.push_back(lastLine);
+        
+        return justifiedText;
     }
 };
