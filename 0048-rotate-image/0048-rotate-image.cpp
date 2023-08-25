@@ -9,6 +9,7 @@ public:
         //4 5 6
         //1 2 3
 
+        //long way
         int m=mat.size();
         int n=mat[0].size();
         vector<vector<int>>ans(n,vector<int>(m,0));
@@ -27,6 +28,7 @@ public:
             }
         }
         
+        //direct way
         // //transpose the matrix
         // int m=mat.size();
         // int n=mat[0].size();
