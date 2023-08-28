@@ -57,15 +57,15 @@ public:
         int m = s.size();
         vector<vector<bool>>dp(n+1,vector<bool>(m+1,false));
         dp[0][0] = true;  // Empty pattern and empty string match
-        
-        for(int j=1;j<=m;j++) 
+        //length based indexing for tabulation
+        for(int j=1;j<=m;j++) //pattern exhausted,string remains
             dp[0][j]=false;
-        for(int i=1;i<=n;i++) 
+        for(int i=1;i<=n;i++) //string exhausted,pattern remaining
         {
             bool flag=true;
-            for(int k=1;k<=i;k++)
+            for(int k=0;k<i;k++) 
             {
-                if(p[k-1]!='*')
+                if(p[k]!='*')
                 {
                     flag=false;
                     break;
@@ -74,9 +74,9 @@ public:
             dp[i][0]=flag;
         }
 
-        for (int i = 1; i <= n; i++) 
+        for(int i=1;i<=n;i++) 
         {
-            for (int j = 1; j <= m; j++) 
+            for(int j=1;j<=m;j++) 
             {
                 if(p[i-1]==s[j-1] || p[i-1]=='?') 
                     dp[i][j]=dp[i-1][j-1];
