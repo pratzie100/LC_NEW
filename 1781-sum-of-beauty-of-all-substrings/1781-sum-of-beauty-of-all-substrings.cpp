@@ -14,6 +14,8 @@ public:
                 {
                     maxFreq = max(maxFreq, i.second);
                     minFreq = min(minFreq, i.second);
+                    // note for "aa" maxfreq=minfreq 
+                    //difference will occur for two different characters only
                 }
                 sum+=maxFreq-minFreq;
             }
