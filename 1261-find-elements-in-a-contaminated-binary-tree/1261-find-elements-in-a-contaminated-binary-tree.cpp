@@ -16,29 +16,17 @@ public:
         rt=root;
         recover(rt,0);
     }
+    unordered_set<int>s;
     void recover(TreeNode* node, int val) {
         if(node==NULL) return;
         node->val = val; // Recover the current node's value
+        s.insert(val);
         recover(node->left, 2*val+1); // Recover left subtree
         recover(node->right, 2*val+2); // Recover right subtree
     }
 
-    bool flag;
     bool find(int target) {
-        flag=false; //reset flag before each search
-        preorder(rt,target);
-        return flag;
-    }
-    void preorder(TreeNode* root,int target)
-    {
-        if(root==NULL) return;
-        if(root->val==target) 
-        {
-            flag=true; 
-            return;
-        }
-        preorder(root->left,target);
-        preorder(root->right,target);
+        return s.count(target);
     }
 };
 
