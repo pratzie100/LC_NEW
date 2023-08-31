@@ -9,7 +9,7 @@ public:
             for(int j=i;j<n;j++)
             {
                 m[s[j]]++;
-                int maxFreq=0, minFreq=INT_MAX;
+                int maxFreq=INT_MIN, minFreq=INT_MAX;
                 for(auto i:m) 
                 {
                     maxFreq = max(maxFreq, i.second);
