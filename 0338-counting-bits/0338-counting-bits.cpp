@@ -30,9 +30,8 @@ public:
         //no. of ones = no. of ones without lsb(right shift) + lsb
         for(int i = 1; i<=n; i++)
         {
-            dp[i] = dp[i/2] + i%2;
+             dp[i] = dp[i/2] + i%2;
         }
-         return dp;
-
+        return dp;
     }
 };
