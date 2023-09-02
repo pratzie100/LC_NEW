@@ -21,6 +21,6 @@ public:
         unordered_map<string,int>m;
         for(string word:dictionary) m[word]++;
         vector<int>dp(s.size(),-1);
-        return solve(0,dp,m,s); ;   
+        return solve(0,dp,m,s);  
     }
 };
