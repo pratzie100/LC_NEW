@@ -5,13 +5,17 @@ public:
         if(ind>=s.size()) return 0;
         if(dp[ind]!=-1) return dp[ind];
         int ans=INT_MAX;
-        string subs= "";
+        string subs=""; //current substring
         for(int i=ind;i<s.size();i++)
         {
             subs+=s[i];
             int extraCount=0;
-            if(m.count(subs)) extraCount=solve(i+1,dp,m,s);
-            else extraCount=subs.size()+solve(i+1,dp,m,s); 
+            //if current substring present in dictionary
+            if(m.count(subs)) extraCount=solve(i+1,dp,m,s); //no extra chars needed
+            
+            else extraCount=subs.size()+solve(i+1,dp,m,s); //else calculate extra chars needed as = size of current substring + extra characters needed for rest of string.
+            
+            // Update 'ans' with minimum extra chars seen so far
             ans=min(ans,extraCount);
         }
         return dp[ind]=ans;
