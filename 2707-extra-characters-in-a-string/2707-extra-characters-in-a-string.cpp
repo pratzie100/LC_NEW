@@ -8,7 +8,7 @@ public:
         string subs= "";
         for(int i=ind;i<s.size();i++)
         {
-            subs.push_back(s[i]);
+            subs+=s[i];
             int extraCount=0;
             if(m.count(subs)) extraCount=solve(i+1,dp,m,s);
             else extraCount=subs.size()+solve(i+1,dp,m,s); 
