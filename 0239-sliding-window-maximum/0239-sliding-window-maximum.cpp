@@ -8,14 +8,13 @@ public:
             if(i<k-1)
             {
                 m[nums[i]]++;
-                continue;
             }
             else
             {
                 m[nums[i]]++;
                 auto it=m.rbegin();
                 ans.push_back(it->first);
-                m[nums[i-k+1]]--;
+                m[nums[i-k+1]]--; 
                 if(m[nums[i-k+1]]==0)
                 {
                     m.erase(nums[i-k+1]);
