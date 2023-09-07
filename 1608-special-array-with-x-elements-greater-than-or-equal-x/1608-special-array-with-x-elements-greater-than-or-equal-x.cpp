@@ -23,7 +23,7 @@ public:
             {
                 return mid;
             }
-            else if(func(mid,nums)<mid)
+            else if(func(mid,nums)<mid) //look for better answer on left as smaller one will have better chance EX [3,5,6,7,8]
             {
                 high=mid-1;
             }
