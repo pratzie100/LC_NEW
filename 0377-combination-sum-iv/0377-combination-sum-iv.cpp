@@ -14,7 +14,6 @@ public:
             if (target - nums[i] >= 0) 
                 ans+=solve(dp,target-nums[i],nums);
         }
-        dp[target]=ans;
-        return ans;
+        return dp[target]=ans;
     }
 };
