@@ -12,7 +12,8 @@ public:
         
         
         int res = 0;
-        for (int i =0;i<n;i++){
+        for (int i =0;i<n;i++)
+        {
             res+= max(l[i], r[i]);
         }
         return res;
