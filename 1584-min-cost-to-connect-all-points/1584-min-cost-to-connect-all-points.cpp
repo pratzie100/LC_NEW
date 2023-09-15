@@ -10,10 +10,10 @@ public:
         if(v==parent[v])
             return v;
         else    
-            return parent[v] = find_set(parent[v]);
+            return parent[v] = find_set(parent[v]); //path compression
     }
 
-    void union_sets(int u, int v)
+    void union_sets(int u, int v) // union two sets by attaching one to other
     {
         int a = find_set(u);
         int b = find_set(v);
@@ -31,6 +31,7 @@ public:
         {
             make_set(i);
         }
+        
         for (int i = 0; i < n-1; i++) 
         {
             for (int j = i + 1; j < n; j++) 
@@ -39,8 +40,8 @@ public:
                 edges.push_back({i, j, cost});
             }
         }
-
-        sort(edges.begin(), edges.end(), [](vector<int>& a, vector<int>& b) {
+        //now apply kruskal algorithm
+        sort(begin(edges), end(edges), [](vector<int>& a, vector<int>& b) {
             return a[2] < b[2];
         });
 
@@ -52,6 +53,7 @@ public:
             int w = edge[2];
             int parentU = find_set(u);
             int parentV = find_set(v);
+            //If the endpoints of the edge belong to different sets, connect them
             if (parentU != parentV) 
             {
                 minCost += w;
