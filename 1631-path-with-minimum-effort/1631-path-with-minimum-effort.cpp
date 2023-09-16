@@ -51,7 +51,7 @@ public:
             int mid = left + (right - left) / 2;
             vector<vector<bool>> visited(m, vector<bool>(n, false));
             
-            if (dfs(heights, 0, 0, mid, visited, m, n)) {
+            if (solvedfs(0, 0, mid, visited, heights, m, n)) {
                 // If a path is found with max difference <= mid, try to find a smaller bound
                 right = mid;
             } else {
@@ -63,7 +63,7 @@ public:
         return left;
     }
     
-    bool dfs(vector<vector<int>>& heights, int i, int j, int maxDiff, vector<vector<bool>>& visited, int m, int n) {
+    bool solvedfs(int i, int j, int maxDiff, vector<vector<bool>>& visited, vector<vector<int>>& heights, int m, int n) {
         if (i == m - 1 && j == n - 1) {
             return true; // Reached the destination
         }
@@ -77,7 +77,7 @@ public:
             
             if (newi >= 0 && newi < m && newj >= 0 && newj < n && !visited[newi][newj]) {
                 int diff = abs(heights[i][j] - heights[newi][newj]);
-                if (diff <= maxDiff && dfs(heights, newi, newj, maxDiff, visited, m, n)) {
+                if (diff <= maxDiff && solvedfs(newi, newj, maxDiff, visited, heights, m, n)) {
                     return true;
                 }
             }
@@ -86,3 +86,4 @@ public:
         return false;
     }
 };
+
