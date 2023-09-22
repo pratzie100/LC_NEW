@@ -1,21 +1,22 @@
 class Solution {
 public:
-    int kthSmallest(vector<vector<int>>& matrix, int k) {
-        vector<int>res;
-        for(int i=0;i<matrix.size();i++)
+    int kthSmallest(vector<vector<int>>& mat, int k) {
+        multiset<int>s;
+        int m=mat.size(),n=mat[0].size();
+        for(int i=0;i<m;i++)
         {
-            for(int j=0;j<matrix[i].size();j++)
+            for(int j=0;j<n;j++)
             {
-                res.push_back(matrix[i][j]);
+                s.insert(mat[i][j]);
             }
         }
-        multiset<int> MS;
-        MS.insert(res.begin(),res.end());
-        res.clear();
-        for(int i: MS)
+        int c=1;
+        for(auto it=begin(s);it!=end(s);it++)
         {
-            res.push_back(i);
+            int x=*it;
+            if(c==k) return *it;
+            c++;
         }
-        return(res[k-1]);
+        return -1;
     }
 };
