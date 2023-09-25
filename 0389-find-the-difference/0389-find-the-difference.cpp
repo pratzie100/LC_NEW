@@ -1,17 +1,17 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        int sum1=0,sum2=0;
-        for(int i=0;i<s.size();i++)
+        int x=0;
+        int y=0;
+        for(char c:s)
         {
-            sum1+=s[i]-'a';
+            x+=int(c);
         }
-        cout<<sum1;
-        for(int i=0;i<t.size();i++)
+        for(char c:t)
         {
-            sum2+=t[i]-'a';
+            y+=int(c);
         }
-        cout<<"\n"<<sum2;
-        return 'a'+(sum2-sum1);
+        return char(y-x);
+
     }
 };
