@@ -1,7 +1,7 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        unordered_map<char, int> m;
+        unordered_map<char,int> m;
         for(int i=0;i<s.length();i++) 
             m[s[i]] = i;
         unordered_set<char>st;
@@ -10,19 +10,19 @@ public:
         {
             char c = s[i];
             if(st.find(c) != st.end()) continue;
-            while(!stk.empty() && stk.top()>c && i<m[stk.top()]) 
+            while(!stk.empty() && stk.top()>c && m[stk.top()]>i) 
             {
-                char popped = stk.top();
+                char x = stk.top();
                 stk.pop();
-                st.erase(popped);
+                st.erase(x);
             }
             stk.push(c);
             st.insert(c);
         }
-        string result;
+        string result="";
         while(!stk.empty()) 
         {
-            result = stk.top() + result;
+            result=stk.top()+result;
             stk.pop();
         }
         return result;
