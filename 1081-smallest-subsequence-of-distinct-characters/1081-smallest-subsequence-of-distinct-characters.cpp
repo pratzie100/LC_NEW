@@ -19,11 +19,10 @@ public:
             stk.push(c);
             st.insert(c);
         }
-        string result;
+        string result="";
         while(!stk.empty()) 
         {
-            cout<<stk.top();
-            result = stk.top() + result;
+            result=stk.top()+result;
             stk.pop();
         }
         return result;
