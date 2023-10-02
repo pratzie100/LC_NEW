@@ -26,7 +26,6 @@ public:
                 else t++;
             }
         }
-        // cout<<bada.size()<<" "<<badb.size();
         return c>t;
     }
 };
