@@ -1,26 +1,9 @@
 class Solution {
 public:
-    int missingNumber(vector<int>& a) {
-        vector<int>b;
-        for(int i=0;i<=a.size();i++)
-        {
-            b.push_back(i);
-        }
-        map<int,int>mp;
-        for(int i=0;i<b.size();i++)
-        {
-            mp[b[i]]++;
-        }
-        for(int i=0;i<a.size();i++)
-        {
-            mp[a[i]]--;
-        }
-        int ans;
-        for(auto i:mp)
-        {
-            if(i.second!=0)
-                ans=i.first;
-        }
-        return ans;
+    int missingNumber(vector<int>& nums) {
+       int n=nums.size();
+        long long acc=accumulate(begin(nums),end(nums),0LL);
+        if(acc==(n*(n+1))/2) return 0;
+        else return (n*(n+1)/2)-acc;
     }
 };
