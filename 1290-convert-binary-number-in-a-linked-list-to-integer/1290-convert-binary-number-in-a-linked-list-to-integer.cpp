@@ -11,20 +11,19 @@
 class Solution {
 public:
     int getDecimalValue(ListNode* head) {
-        ListNode* ptr=head;
-        vector<int>nums;
-        while(ptr!=nullptr)
+        ListNode*ptr=head;
+        vector<int>arr;
+        while(ptr)
         {
-            nums.push_back(ptr->val);
+            arr.push_back(ptr->val);
             ptr=ptr->next;
         }
-        int sum=0;
-        int e=0;
-        for(int i=nums.size()-1;i>=0;i--)
+        int d=0;
+        int c=0;
+        for(int i=arr.size()-1;i>=0;i--)
         {
-            sum+=nums[i]*pow(2,e);
-            e++;
+            d+=arr[i]*pow(2,c++);
         }
-        return sum;
+        return d;
     }
 };
