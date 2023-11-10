@@ -1,42 +1,45 @@
 class Solution {
 public:
     vector<int> restoreArray(vector<vector<int>>& adjacentPairs) {
-        unordered_map<int,vector<int>>graph;
+        unordered_map<int,vector<int>>g;
+        
         // Build the graph
-        for(const auto& pair : adjacentPairs) 
+        for(const auto& pair:adjacentPairs)
         {
-            graph[pair[0]].push_back(pair[1]);
-            graph[pair[1]].push_back(pair[0]);
+            g[pair[0]].push_back(pair[1]);
+            g[pair[1]].push_back(pair[0]);
         }
-        // Find the first element (it will only appear once in adjacentPairs)
+        
+        // Find first element (it will only appear once in adjacentPairs)
         int start;
-        for(const auto& entry : graph) 
+        for(const auto& entry:g)
         {
-            if(entry.second.size()==1) 
+            if(entry.second.size()==1)
             {
-                start = entry.first;
+                start=entry.first;
                 break;
             }
         }
+        
         // DFS to reconstruct the array
-        unordered_set<int> visited;
-        stack<int> dfsStack;
-        vector<int> result;
+        unordered_set<int>vis;
+        stack<int>dfsStack;
         dfsStack.push(start);
-        while(!dfsStack.empty()) 
+        vector<int>ans;
+        while(!dfsStack.empty())
         {
-            int current = dfsStack.top();
+            int current=dfsStack.top();
             dfsStack.pop();
-            if(visited.count(current) == 0) 
+            if(vis.count(current)==0)
             {
-                visited.insert(current);
-                result.push_back(current);
-                for(int neighbor : graph[current]) 
+                vis.insert(current);
+                ans.push_back(current);
+                for(const auto& x: g[current])
                 {
-                    dfsStack.push(neighbor);
+                    dfsStack.push(x);
                 }
             }
         }
-        return result;
+        return ans;
     }
 };
