@@ -15,22 +15,21 @@ public:
     }
 
     int shortestPath(int node1, int node2) {
-        int n = g.size();
-        vector<int> dist(n, INF);
-        dist[node1] = 0;
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-        pq.push({0, node1});
+        int n=g.size();
+        vector<int>dist(n,INF);
+        dist[node1]=0;
+        priority_queue<pair<int,int>,vector<pair<int, int>>,greater<pair<int,int>>>pq;
+        pq.push({0,node1});
         while (!pq.empty()) {
             int u = pq.top().second;
             int d = pq.top().first;
             pq.pop();
-            if (d > dist[u]) {
-                continue;
-            }
-            for (const pair<int, int>& edge : g[u]) {
+            // if (d > dist[u]) {
+            //     continue;
+            // }
+            for(pair<int,int>& edge : g[u]) {
                 int v = edge.first;
                 int w = edge.second;
-
                 if (dist[u] + w < dist[v]) {
                     dist[v] = dist[u] + w;
                     pq.push({dist[v], v});
