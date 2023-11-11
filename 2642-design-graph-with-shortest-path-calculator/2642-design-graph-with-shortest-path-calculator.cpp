@@ -9,11 +9,9 @@ public:
             g[edges[i][0]].push_back(make_pair(edges[i][1], edges[i][2]));
         }
     }
-
     void addEdge(vector<int> edge) {
         g[edge[0]].push_back(make_pair(edge[1], edge[2]));
     }
-
     int shortestPath(int node1, int node2) {
         int n=g.size();
         vector<int>dist(n,INF);
@@ -21,21 +19,18 @@ public:
         priority_queue<pair<int,int>,vector<pair<int, int>>,greater<pair<int,int>>>pq;
         pq.push({0,node1});
         while (!pq.empty()) {
-            int u = pq.top().second;
             int d = pq.top().first;
+            int u = pq.top().second;
             pq.pop();
-            // if (d > dist[u]) {
-            //     continue;
-            // }
-            for(pair<int,int>& edge : g[u]) {
+            for(const auto& edge : g[u]) {
                 int v = edge.first;
                 int w = edge.second;
-                if (dist[u] + w < dist[v]) {
+                if(dist[u] + w < dist[v]) {
                     dist[v] = dist[u] + w;
                     pq.push({dist[v], v});
                 }
             }
         }
-        return (dist[node2] == INF) ? -1 : dist[node2];
+        return(dist[node2] == INF) ? -1 : dist[node2];
     }
 };
