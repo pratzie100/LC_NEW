@@ -12,7 +12,7 @@ public:
             ps[i]=ps[i-1]+nums[i-1];
         }
         // for(int i:ps) cout<<i<<" ";
-        // cout<<endl;
+        cout<<endl;
         for(int i=1;i<=n;i++)
         {
             ss[i]=ss[i-1]+nums[n-i];
@@ -22,6 +22,8 @@ public:
         {
             int leftsum=(nums[i]*i)-ps[i];
             int rightsum=ss[n-i-1]-(nums[i]*(n-i-1));
+            // cout<<endl;
+            // cout<<leftsum<<" "<<rightsum<<endl;
             ans[i]=leftsum+rightsum;
         }
         return ans;
