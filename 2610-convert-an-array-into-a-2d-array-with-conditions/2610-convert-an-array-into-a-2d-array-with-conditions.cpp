@@ -1,33 +1,27 @@
 class Solution {
 public:
     vector<vector<int>> findMatrix(vector<int>& nums) {
-        //there will be 'max freq of any element' no. of rows in final 2d array
-        vector<vector<int>> ans;
-        map<int,int> m;
-        int n=nums.size();
-        for(int i=0;i<n;i++) m[nums[i]]++; //taking freq
-        int maxi=0; 
-        for(auto x:m)
+        unordered_map<int,int>m;
+        for(int i=0;i<nums.size();i++)
         {
-            if(x.second>maxi) maxi=x.second; //finding max freq
+            m[nums[i]]++;
         }
-        
-        for(int i=0;i<maxi;i++) //run loop max freq times for max freq rows
+        int maxl=INT_MIN;
+        //int p;
+        for(auto i:m)
         {
-            int flag=0; 
-            vector<int> row;
-            for(auto &x:m)
+            if(i.second>maxl)
             {
-                if(x.second>0)
-                {
-                    flag=1; //elements need to be added in current row
-                    row.push_back(x.first);
-                    x.second--; //decrease their count for current row
-                }
+                maxl=i.second;
+                //p=i.first;
             }
-            if(flag==0) return ans; //no elements need to be added to current row
-            
-            ans.push_back(row);
+        }
+        vector<vector<int>>ans(maxl);
+        m.clear();
+        for(int i=0;i<nums.size();i++)
+        {
+            m[nums[i]]++;
+            ans[m[nums[i]]-1].push_back(nums[i]);
         }
         return ans;
     }
