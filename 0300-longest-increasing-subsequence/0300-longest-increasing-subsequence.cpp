@@ -13,7 +13,7 @@ public:
             }
             else
             {
-                //find first index  in range which is > nums[i]
+                //find first index  in range of v which is > nums[i]
                 int ind=lower_bound(v.begin(),v.end(),nums[i])-v.begin();
                 v[ind]=nums[i]; //simple overwrite that index
             }
