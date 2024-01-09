@@ -8,40 +8,23 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+ListNode* ans=NULL;
 class Solution {
 public:
-    ListNode* vtoll(vector<int>& ans)
+    void reverse(ListNode* prev,ListNode*cur)
     {
-        ListNode* head=nullptr;
-        ListNode* tail=nullptr;
-        for(int i=0;i<ans.size();i++)
+        if(cur)
         {
-            ListNode* newnode=new ListNode;
-            newnode->val=ans[i];
-            newnode->next=nullptr;
-            if(head==nullptr)
-            {
-                head=newnode;
-                tail=newnode;
-            }
-            else
-            {
-                tail->next=newnode;
-                tail=newnode;
-            }
+            reverse(cur,cur->next);
+            cur->next=prev;
         }
-        return head;
+        else
+        {
+            ::ans=prev;
+        }
     }
     ListNode* reverseList(ListNode* head) {
-        ListNode* ptr=head;
-        vector<int>ans;
-        while(ptr!=nullptr)
-        {
-            ans.push_back(ptr->val);
-            ptr=ptr->next;
-        }
-        reverse(ans.begin(),ans.end());
-        ListNode *start=vtoll(ans);
-        return start;
+        reverse(NULL,head);
+        return ::ans;
     }
 };
