@@ -1,24 +1,15 @@
 class Solution {
 public:
-    // int fib(int n)
-    // {
-    //     if(n<=1)
-    //     return n;
-    //     else
-    //     return fib(n-1)+fib(n-2);
-    // }
+    //same as calculating fibonaci (n+1)th term
+    //no need to handle n==0 corner case due to constraints
     int climbStairs(int n) {
-        // int x=n+1;
-        // return fib(x);
-
-       int arr[n+1];
-       arr[0]=1;
-       arr[1]=1;
-       for(int i=2;i<=n;i++)
-       {
-           arr[i]=arr[i-1]+arr[i-2];
-       } 
-       return arr[n];
-    
+        int prev2=1,prev=1;
+        for(int i=2;i<=n;i++)
+        {
+            int current=prev+prev2;
+            prev2=prev;
+            prev=current;
+        }
+        return prev;
     }
 };
