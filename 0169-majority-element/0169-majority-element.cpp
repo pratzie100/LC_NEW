@@ -1,18 +1,17 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        //O(N^2)
-        // int key=ceil(nums.size()/2);
-        // int i;
-        // for(i=0;i<nums.size();i++)
-        // {
-        //     if(count(nums.begin(),nums.end(),nums[i])>key)
-        //         break;
-        // }
-        // return nums[i];
+        unordered_map<int,int>m;
         int n=nums.size();
-        sort(nums.begin(),nums.end());
-        return(nums[n/2]);
-    
+        for(int i=0;i<n;i++)
+        {
+            m[nums[i]]++;
+        }
+        for(auto i:m)
+        {
+            if(i.second>floor(n/2))
+                return i.first;
+        }
+        return -1;
     }
 };
