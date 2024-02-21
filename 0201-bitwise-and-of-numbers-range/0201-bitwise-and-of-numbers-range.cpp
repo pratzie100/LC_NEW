@@ -8,9 +8,9 @@ public:
             l>>=1;
             c++;
         }
-        int x=r;
+       // int x=r;
        // x=x<<c;
-        return x<<c;
+        return r<<c;
     }
 };
 // 101
