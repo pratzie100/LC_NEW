@@ -1,5 +1,14 @@
 class Solution {
 public:
+    int f(int mid,vector<int>arr)
+    {
+        int c=0;
+        for(int i:arr)
+        {
+            if(i<mid) c++;
+        }
+        return c;
+    }
     int findDuplicate(vector<int>& nums) {
         // while(nums[0]!=nums[nums[0]])
         // {
@@ -17,28 +26,18 @@ public:
         //     if(i.second>1) return i.first;
         // }
         // return -1;
-        
-        int low = 1, high = nums.size() - 1;
-        
-        while (low < high) 
+    
+        int n=nums.size();
+        int l=0;
+        int h=n-1;
+        while(l<h)
         {
-            int mid = (low + high) / 2;
-            int count = 0;
-            
-            for (int num : nums) 
-            {
-                if (num <= mid) 
-                    count++;
-            }
-            if (count > mid) 
-            {
-                high = mid;
-            } 
-            else 
-            {
-                low = mid + 1;
-            }
+            int mid=l+(h-l)/2;
+            int c=f(mid+1,nums);
+            if(c<mid+1) l=mid+1;
+            else h=mid;
         }
-        return low;
+        return l;
     }
+    //[7,3,2,4,1,5,7,6]
 };
