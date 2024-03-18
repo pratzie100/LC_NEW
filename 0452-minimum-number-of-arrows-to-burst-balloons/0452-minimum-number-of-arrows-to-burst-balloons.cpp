@@ -1,7 +1,7 @@
 class Solution {
 public:
-int findMinArrowShots(vector<vector<int>>& points) {
-    vector<pair<int, int>> b;
+    int findMinArrowShots(vector<vector<int>>& points) {
+            vector<pair<int, int>> b;
     for (int i = 0; i < points.size(); i++) {
         int s = points[i][0];
         int e = points[i][1];
@@ -25,5 +25,5 @@ int findMinArrowShots(vector<vector<int>>& points) {
         }
     }
     return count;
-}
+    }
 };
