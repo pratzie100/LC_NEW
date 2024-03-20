@@ -33,7 +33,8 @@ public:
         {
             res.push_back(ptr1->val);
             ptr1=ptr1->next;
-        }        ListNode* head=nullptr;
+        }        
+        ListNode* head=nullptr;
         ListNode* tail=nullptr;
         for(int i=0;i<res.size();i++)
         {
