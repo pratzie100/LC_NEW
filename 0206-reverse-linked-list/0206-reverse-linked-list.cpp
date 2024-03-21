@@ -11,21 +11,34 @@
 
 class Solution {
 public:
-    ListNode* ans=NULL;
-    void reverse(ListNode* prev,ListNode*cur)
-    {
-        if(cur)
+    // ListNode* ans=NULL;
+    // void reverse(ListNode* prev,ListNode*cur)
+    // {
+    //     if(cur)
+    //     {
+    //         reverse(cur,cur->next);
+    //         cur->next=prev;
+    //     }
+    //     else
+    //     {
+    //         ans=prev;
+    //     }
+    // }
+    // ListNode* reverseList(ListNode* head) {
+    //     reverse(NULL,head);
+    //     return ans;
+    // }
+    ListNode* solve(ListNode* prev, ListNode* node,ListNode* ans) {
+        if(node)
         {
-            reverse(cur,cur->next);
-            cur->next=prev;
+            ans=solve(node,node->next,ans);
+            node->next=prev;
         }
-        else
-        {
-            ans=prev;
-        }
-    }
-    ListNode* reverseList(ListNode* head) {
-        reverse(NULL,head);
+        else ans=prev;
         return ans;
+    }
+    
+    ListNode* reverseList(ListNode* head) {       
+        return solve(NULL,head,NULL); 
     }
 };
