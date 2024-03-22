@@ -15,7 +15,7 @@ public:
         if(!curr) return true;
         ans=f(head,curr->next,ans);
         //cout<<ans<<" ";
-        if(!ans) return false; //recursively send back false
+        if(!ans) return false; 
         //if(curr->next==head) return true;
         ans=(curr->val==head->val);
         
