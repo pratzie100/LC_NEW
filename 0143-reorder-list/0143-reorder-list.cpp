@@ -10,50 +10,27 @@
  */
 class Solution {
 public:
-    ListNode* vtoll(vector<int>& res)
-    {
-        ListNode* head=nullptr;
-        ListNode* tail=nullptr;
-        for(int i=0;i<res.size();i++)
-        {
-            ListNode* newnode= new ListNode;
-            newnode->val=res[i];
-            newnode->next=nullptr;
-            if(head==nullptr)
-            {
-                head=newnode;
-                tail=newnode;
-            }
-            else
-            {
-                tail->next=newnode;
-                tail=newnode;
-            }
-        }
-        return head;
-    }
     void reorderList(ListNode* head) {
-        ListNode* ptr=head;
-        vector<int> ans;
-        while(ptr!=nullptr)
+        if(!head || !head->next || !head->next->next) return;
+        stack<ListNode*>s;
+        ListNode*ptr=head;
+        int size=0;
+        while(ptr)
         {
-            ans.push_back(ptr->val);
+            s.push(ptr);
+            size++;
             ptr=ptr->next;
         }
-        vector<int>res;
-        int i=0;
-        int j=ans.size()-1;
-        while(i<=j)
+        ptr=head;
+        for(int i=0;i<size/2;i++)
         {
-            res.push_back(ans[i]);
-            if(i==j)
-                break;
-            res.push_back(ans[j]);
-            i++;
-            j--;
+            ListNode*back=s.top();
+            s.pop();
+            back->next=ptr->next;
+            ptr->next=back;
+            ptr=ptr->next->next;
         }
-        ListNode* start=vtoll(res);
-        head->next = start->next;
-        start->next = nullptr;
+        ptr->next=NULL;
     }
 };
+
