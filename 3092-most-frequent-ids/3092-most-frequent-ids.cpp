@@ -2,6 +2,19 @@ class Solution {
 public:
       #define ll long long
     vector<long long> mostFrequentIDs(vector<int>& nums, vector<int>& freq) {
+        vector<ll>ans;
+        unordered_map<ll,ll>m;
+        multiset<ll>ms;
+        for(int i=0;i<nums.size();i++)
+        {
+            ll prev=m[nums[i]];
+            if(prev>0)ms.erase(ms.find(prev));
+            m[nums[i]]+=freq[i];
+            if(m[nums[i]]>0) ms.insert(m[nums[i]]);
+            if(ms.empty()){ans.push_back(0);continue;}
+            ans.push_back(*ms.rbegin());      
+        }
+        return ans;
 //         vector<ll>ans;
 //         unordered_map<ll,ll>m;
 //         ll maxoc=INT_MIN;
@@ -31,26 +44,28 @@ public:
 //             ans.push_back(maxoc);
 //         }
 //         return ans;
-        vector<ll>ans;
-        unordered_map<ll,ll>m;
-        multiset<ll>ms;
-        ll maxoc = 0; 
-        for(int i=0;i<nums.size();i++) 
-        {
-            ll prevFreq=m[nums[i]];
-            m[nums[i]]+=freq[i];
-            if(prevFreq > 0)
-                ms.erase(ms.find(prevFreq));
-            if(m[nums[i]] > 0)
-                ms.insert(m[nums[i]]);
-            if(ms.empty()) {
-                ans.push_back(0);
-                continue;
-            }
-            maxoc = *ms.rbegin();
-            ans.push_back(maxoc);
-        }
-        return ans;
+        
+        
+        // vector<ll>ans;
+        // unordered_map<ll,ll>m;
+        // multiset<ll>ms;
+        // ll maxoc = 0; 
+        // for(int i=0;i<nums.size();i++) 
+        // {
+        //     ll prevFreq=m[nums[i]];
+        //     m[nums[i]]+=freq[i];
+        //     if(prevFreq > 0)
+        //         ms.erase(ms.find(prevFreq));
+        //     if(m[nums[i]] > 0)
+        //         ms.insert(m[nums[i]]);
+        //     if(ms.empty()) {
+        //         ans.push_back(0);
+        //         continue;
+        //     }
+        //     maxoc = *ms.rbegin();
+        //     ans.push_back(maxoc);
+        // }
+        // return ans;
     }
     // [7,3,3,9,3]
     // [2,5,5,3,-10]
