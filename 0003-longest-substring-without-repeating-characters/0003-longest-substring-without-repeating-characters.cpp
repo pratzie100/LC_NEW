@@ -1,42 +1,38 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // //abca //abcababcdc //acdebfbabcdc //acbdefbabcdc //abba
-        // unordered_map<char,int>m;
-        // int left=0,right=0,res=0;
-        // for(int right=0;right<s.size();right++)
-        // {
-        //     if(m[s[right]]>0) //if s[right] already exist in map
-        //         left=max(left,m[s[right]]); //update left pointer //here we will not do left=m[s[right]] as left should always move forward..there will be chance that s[right] previously occured way before where left is present currently,in that case left=m[s[right]] will shift left pointer backwards leading to wrong current window size calculation at res(3rd line) ..ex- abba 
-        //     m[s[right]]=right+1;  // update length of max substring ending at right pointer
-        //     res=max(res,m[s[right]]-left);  //m[s[right]]-left is current substring window size..ex //acdebfbabcdc when right reaches second 'b' ,then 
-        //     //res=max(6,7-5)=6 //note at this line res already has length of max required substring before current iteration
+        // int t = 0;
+        // unordered_set<char> c;
+        // int l = 0,r = 0;
+        // for(r = 0;r < s.length(); r++){
+        //     if( c.count(s[r]) == 0){
+        //         c.insert(s[r]);
+        //         t = max(t, r-l+1);
+        //     }else{
+        //         while(c.count(s[r])){
+        //             c.erase(s[l]);
+        //             l++;
+        //         }
+        //         c.insert(s[r]);
+        //     }
         // }
-        // return res;
-        
-        int l=0,r=0;
-        int ans=INT_MIN;
+        // return t;
         unordered_map<int,int>m;
-        for(r=0;r<s.size();r++)
+        int l=0,r=0;
+        int n=s.size();
+        int ans=0;
+        while(r<n)
         {
-            // while(m[s[r]]>0) //if already present
-            // {
-            //     ans=max(ans,r-l); //no need to do r-l+1 as r-l is required length 
-            //     m[s[l]]--;
-            //     l++;
-            // }
-            // m[s[r]]++;
-            
-            //other way
-            m[s[r]]++;
-            while(m[s[r]]>1) //if already present
+            m[s[r]-'a']++;
+            while(m[s[r]-'a']>1)
             {
-                ans=max(ans,r-l); //no need to do r-l+1 as r-l is required length 
-                m[s[l]]--;
+                m[s[l]-'a']--;
+                //if(m[s[l]]==0)m.erase(s[l]); not necessary
                 l++;
             }
+            ans=max(ans,r-l+1);
+            r++;
         }
-        return max(ans,r-l); //r-l is taken here to include last window case //aab //where answer for last window ab is not updated in ans,so r-l is answer in that case
-        
+        return ans;
     }
 };
