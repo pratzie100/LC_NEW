@@ -11,18 +11,18 @@ public:
                 s.pop();
             }
             s.push(num[i]);
-            if(s.size()==1 && s.top()=='0')
+            if(s.size()==1 && s.top()=='0') //to make sure we dont have preceding zeros
             {
                 s.pop();
             }
         }
-        while(k && !s.empty())
+        while(k && !s.empty()) //still elements left to pop
         {
             k--;
             s.pop();
         }
         string res="";
-        while(!s.empty())
+        while(!s.empty()) 
         {
             res+=s.top();
             s.pop();
