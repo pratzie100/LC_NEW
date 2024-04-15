@@ -11,27 +11,16 @@
  */
 class Solution {
 public:
-    vector<int>ans;
-    void solve(TreeNode* root, string t) {
-        if(!root->left && !root->right) 
-        {
-            ans.push_back(stoi(t));
-            return;
-        }
-        if(root->left) 
-            solve(root->left, t + to_string(root->left->val));
-        if(root->right) 
-            solve(root->right, t  + to_string(root->right->val));
+    void f(TreeNode* root,string s,int&ans)
+    {
+        if(!root->left&&!root->right){ans+=stoi(s);return;}
+        if(root->left) f(root->left,s+to_string(root->left->val),ans);
+        if(root->right) f(root->right,s+to_string(root->right->val),ans);
     }
     int sumNumbers(TreeNode* root) {
-        if(!root) return 0;
-        solve(root, to_string(root->val));
-        int sum=0;
-        for(int i=0;i<ans.size();i++)
-        {
-            sum+=ans[i];
-        }
-        return sum;
+        if(!root)return 0;
+        int ans=0;
+        f(root,to_string(root->val),ans);
+        return ans;
     }
-  
 };
