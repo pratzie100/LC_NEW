@@ -12,48 +12,44 @@
 class Solution {
 public:
     TreeNode* addOneRow(TreeNode* root, int val, int depth) {
-        if(depth == 1) 
+        if(depth==1)
         {
-            TreeNode* newroot = new TreeNode(val);
-            newroot->left = root;
+            TreeNode*newroot=new TreeNode(val);
+            newroot->left=root;
             return newroot;
         }
-        
-        queue<TreeNode*> q;
+        queue<TreeNode*>q;
+        int c=1;
         q.push(root);
-        int currentDepth = 1;
-        while(!q.empty()) 
+        while(!q.empty())
         {
-            int size = q.size(); //nodes at current level of binary tree
-            if(currentDepth!=depth-1)
+            int n=q.size();
+            if(c==depth-1)
             {
-                for(int i=0; i<size; i++) 
+                for(int i=0;i<n;i++)
                 {
-                    TreeNode* node = q.front();
+                    TreeNode*curr=q.front();
                     q.pop();
-                    if(node->left) q.push(node->left);
-                    if(node->right) q.push(node->right);
-                }
-                currentDepth++;
-            }
-            else  //main task
-            {
-                for(int i=0; i<size; i++) 
-                {
-                    TreeNode* curr = q.front();
-                    q.pop();
-                    
-                    TreeNode* newLeft = new TreeNode(val);
-                    TreeNode* newRight = new TreeNode(val);
-                    
-                    newLeft->left = curr->left;
-                    newRight->right = curr->right;
-                    
-                    curr->left = newLeft;
-                    curr->right = newRight;
+                    TreeNode*newl=new TreeNode(val);
+                    TreeNode*newr=new TreeNode(val);
+                    newl->left=curr->left;
+                    newr->right=curr->right;
+                    curr->left=newl;
+                    curr->right=newr;
                 }
                 break;
-            }            
+            }
+            else
+            {
+                for(int i=0;i<n;i++)
+                {
+                    TreeNode*curr=q.front();
+                    q.pop();
+                    if(curr->left) q.push(curr->left);
+                    if(curr->right) q.push(curr->right);
+                }
+                c++;
+            }
         }
         return root;
     }
