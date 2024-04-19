@@ -1,46 +1,42 @@
 class Solution {
 public:
-    void bfs(int row,int col,vector<vector<char>>& grid,vector<vector<int>>& visited)
+
+    void bfs(int dr[],int dc[],vector<vector<char>>&g,vector<vector<int>>&v,int i,int j,int m,int n)
     {
-        int m=grid.size();
-        int n=grid[0].size();
+        v[i][j]=1;
         queue<pair<int,int>>q;
-        q.push({row,col});
-        visited[row][col]=1;
-        vector<vector<int>>moves{{-1,0},{1,0},{0,-1},{0,1}};
+        q.push({i,j});
         while(!q.empty())
         {
             int x=q.front().first;
             int y=q.front().second;
             q.pop();
-            for(int i = 0; i < moves.size(); i++)
+            for(int a=0;a<4;a++)
             {
-                int newrow = x + moves[i][0];
-                int newcol = y + moves[i][1];
-                if(newrow>=0 && newrow<m && newcol>=0 && newcol<n && grid[newrow][newcol] == '1' && visited[newrow][newcol] == 0)
-                {
-                    q.push({newrow, newcol});
-                    visited[newrow][newcol] = 1;
+                int b=x+dr[a];int c=y+dc[a];
+                if(b>=0&&b<m&&c>=0&&c<n&&!v[b][c]&&g[b][c]=='1'){
+                   q.push({b,c}); 
+                    v[b][c]=1;
                 }
             }
         }
     }
     int numIslands(vector<vector<char>>& grid) {
-        int count=0;
-        int m=grid.size();
+         int m=grid.size();
         int n=grid[0].size();
-        vector<vector<int>>visited(m,vector<int>(n,0));
-        for(int row=0;row<m;row++)
-        {
-            for(int col=0;col<n;col++)
+        int c=0;
+        vector<vector<int>>v(m,vector<int>(n,0));
+        int dr[]= {-1,0,1,0};
+        int dc[]= {0,1,0,-1};
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++)
             {
-                if(grid[row][col]=='1' && visited[row][col]==0)
-                {
-                    count++;
-                    bfs(row,col,grid,visited);
+                if(!v[i][j] && grid[i][j]=='1'){
+                    c++;
+                    bfs(dr,dc,grid,v,i,j,m,n);
                 }
             }
         }
-        return count;
+        return c;
     }
 };
