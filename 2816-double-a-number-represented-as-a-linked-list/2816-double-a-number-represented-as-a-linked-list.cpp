@@ -11,12 +11,10 @@
 class Solution {
 public:
     ListNode* doubleIt(ListNode* head) {
-        // If head is null, return null
         if (!head) return nullptr;
 
         stack<ListNode*> nodeStack;
 
-        // Push all nodes onto the stack
         ListNode* current = head;
         while (current) {
             nodeStack.push(current);
@@ -26,7 +24,6 @@ public:
         int carry = 0;
         ListNode* newHead = nullptr;
 
-        // Pop nodes from the stack, doubling their values
         while (!nodeStack.empty()) {
             ListNode* node = nodeStack.top();
             nodeStack.pop();
