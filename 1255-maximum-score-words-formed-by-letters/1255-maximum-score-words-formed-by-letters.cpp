@@ -5,7 +5,7 @@ public:
         for(char c:letters)mp[c]++;
         int n=words.size();
         int ans=0;
-        for (int mask=0;mask<(1<<n);mask++)
+        for(int mask=0;mask<(1<<n);mask++)
         {
             unordered_map<char,int>m=mp;
             int cur=0;
