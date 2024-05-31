@@ -1,19 +1,10 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
-        map<int,vector<int>>mp;
-        for(int i=0;i<nums.size();i++)
-        {
-            mp[nums[i]].push_back(i);
-        }
-        nums.clear();
-        for(auto i:mp)
-        {
-            if(i.second.size()==1)
-            {
-                nums.push_back(i.first);
-            }
-        }
-        return nums;
+        unordered_map<int,int>m;
+        for(int i:nums){m[i]++;}
+        vector<int>ans;
+        for(auto i:m){if(i.second==1)ans.push_back(i.first);};
+        return ans;
     }
 };
