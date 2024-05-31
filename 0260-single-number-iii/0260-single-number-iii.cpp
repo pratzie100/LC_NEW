@@ -6,6 +6,7 @@ public:
         // vector<int>ans;
         // for(auto i:m){if(i.second==1)ans.push_back(i.first);};
         // return ans;
+        
         vector<int>ans;
         sort(begin(nums),end(nums));
         if(nums[1]!=nums[0]) ans.push_back(nums[0]);
