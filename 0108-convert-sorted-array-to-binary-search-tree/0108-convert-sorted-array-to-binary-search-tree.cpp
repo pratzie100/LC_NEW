@@ -1,27 +1,25 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-//Use Binary search
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        return buildBST(nums, 0, nums.size() - 1);
+        return make(0,nums.size()-1,nums);
     }
-    
-    TreeNode* buildBST(vector<int>& nums, int left, int right) {
-        // Base case: if left index becomes greater than right index, return nullptr
-        if (left > right) {
-            return nullptr;
-        }
-        
-        // Find the middle element of the current range
-        int mid = left + (right - left) / 2;
-        
-        // Create a new TreeNode with the middle element as the value
-        TreeNode* root = new TreeNode(nums[mid]);
-        
-        // Recursively build the left and right subtrees
-        root->left = buildBST(nums, left, mid - 1);
-        root->right = buildBST(nums, mid + 1, right);
-        
-        return root;
+    TreeNode* make(int l,int r,vector<int>&nums){
+        if(l>r) return NULL;
+        int mid=(l+r)/2;
+        TreeNode* curroot=new TreeNode(nums[mid]);  //current root
+        curroot->left=make(l,mid-1,nums);
+        curroot->right=make(mid+1,r,nums);
+        return curroot;
     }
 };
-
