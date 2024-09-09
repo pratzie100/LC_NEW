@@ -1,42 +1,29 @@
 class Solution {
 public:
-
-    void bfs(int dr[],int dc[],vector<vector<char>>&g,vector<vector<int>>&v,int i,int j,int m,int n)
-    {
-        v[i][j]=1;
-        queue<pair<int,int>>q;
-        q.push({i,j});
-        while(!q.empty())
-        {
-            int x=q.front().first;
-            int y=q.front().second;
-            q.pop();
-            for(int a=0;a<4;a++)
-            {
-                int b=x+dr[a];int c=y+dc[a];
-                if(b>=0&&b<m&&c>=0&&c<n&&!v[b][c]&&g[b][c]=='1'){
-                   q.push({b,c}); 
-                    v[b][c]=1;
-                }
+    void dfs(int i,int j,int m,int n,vector<vector<char>>&grid,vector<vector<bool>>&visited,vector<vector<int>>&moves){
+        visited[i][j]=true;
+        for(int k=0;k<4;k++){
+            int newi=i+moves[k][0];
+            int newj=j+moves[k][1];
+            if(newi>=0 && newi<m && newj>=0 && newj<n && !visited[newi][newj] && grid[newi][newj]=='1'){
+                dfs(newi,newj,m,n,grid,visited, moves);
             }
         }
     }
     int numIslands(vector<vector<char>>& grid) {
-         int m=grid.size();
+        int m=grid.size();
         int n=grid[0].size();
-        int c=0;
-        vector<vector<int>>v(m,vector<int>(n,0));
-        int dr[]= {-1,0,1,0};
-        int dc[]= {0,1,0,-1};
+        int count=0;
+        vector<vector<bool>>visited(m,vector<bool>(n,0));
+        vector<vector<int>>moves{{0,1},{0,-1},{1,0},{-1,0}};
         for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++)
-            {
-                if(!v[i][j] && grid[i][j]=='1'){
-                    c++;
-                    bfs(dr,dc,grid,v,i,j,m,n);
+            for(int j=0;j<n;j++){
+                if(!visited[i][j] && grid[i][j]=='1'){
+                    count++;
+                    dfs(i,j,m,n,grid,visited,moves);
                 }
             }
         }
-        return c;
+        return count;
     }
 };
