@@ -1,17 +1,16 @@
 class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
-        set<char>s(begin(allowed),end(allowed));
-        int count=0;
-        for(string str:words)
-        {
-            bool allpresent=true;
-            for(char c:str)
-            {
-                if(!(s.count(c))) allpresent=false; 
+        unordered_set<char>st(begin(allowed),end(allowed));
+        int k=0;
+        for(string i:words){
+            int n=i.size();
+            int j=0;
+            for(char c:i){
+                if(st.count(c))j++;
             }
-            if(allpresent) count++;
+            if(j==n) k++;
         }
-        return count;
+        return k;
     }
 };
