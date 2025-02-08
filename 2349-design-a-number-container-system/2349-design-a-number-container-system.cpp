@@ -6,10 +6,10 @@ public:
         
     }
     void change(int index, int number) {
-        if(indice_to_num.count(index)){
+        if(indice_to_num.count(index)){ //if index is already occupied
             int oldnum=indice_to_num[index];
-            num_to_indice[oldnum].erase(index);
-            if(num_to_indice[oldnum].empty()){
+            num_to_indice[oldnum].erase(index); // Remove index from old number's set
+            if(num_to_indice[oldnum].empty()){ // Clean up if set becomes empty
                 num_to_indice.erase(oldnum);
             }
         }
