@@ -1,52 +1,81 @@
 class MyStack {
+    queue<int>q1;
+    queue<int>q2;
 public:
-    deque<int>dq;
     MyStack() {
-        
+
     }
     
     void push(int x) {
-        dq.push_back(x);
+        // q2.push(x);
+        // while(!q1.empty()){
+        //     q2.push(q1.front());
+        //     q1.pop();
+        // }
+        // swap(q1,q2);
+
+
+       // q1.push(x);
+
+
+        int s=q1.size();
+        q1.push(x);
+        for(int i=0;i<s;i++){
+            q1.push(q1.front());
+            q1.pop();
+        }
     }
     
     int pop() {
-        int x=dq.back();
-        dq.pop_back();
-        return x;
+        // if(q1.empty()) return -1;
+        // int y=q1.front();
+        // q1.pop();
+        // return y;
+
+
+
+        // if(q1.empty()) return -1;
+        // while(q1.size()>1) {
+        //     q2.push(q1.front());
+        //     q1.pop();
+        // }
+        // int y=q1.front();
+        // q1.pop();
+        // swap(q1,q2);
+        // return y;
+
+
+        if(q1.empty()) return -1;
+        int y=q1.front();
+        q1.pop();
+        return y;
     }
     
     int top() {
-        return dq.back();
+
+        // return q1.empty()? -1:q1.front();
+        
+
+        // if(q1.empty()) return -1;
+        // while(q1.size()>1) {
+        //     q2.push(q1.front());
+        //     q1.pop();
+        // }
+        // int y=q1.front();
+        // q1.pop();
+        // q2.push(y); // reinsert it to maintain the stack
+        // swap(q2,q1);
+        // return y;
+
+
+
+        return q1.empty()? -1:q1.front();
     }
     
     bool empty() {
-        return dq.empty();
+        return q1.empty();
     }
 };
-// public:
-//     stack<int>s;
-//     MyStack() {
-        
-//     }
-    
-//     void push(int x) {
-//         s.push(x);
-//     }
-    
-//     int pop() {
-//         int x=s.top();
-//         s.pop();
-//         return x;
-//     }
-    
-//     int top() {
-//         return s.top();
-//     }
-    
-//     bool empty() {
-//         return s.empty();
-//     }
-// };
 
 /**
  * Your MyStack object will be instantiated and called as such:
