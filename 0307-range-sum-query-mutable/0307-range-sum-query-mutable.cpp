@@ -50,16 +50,21 @@ public:
         for(int i=start_block+1;i<end_block;i++){
             ans+=blocks[i];
         }
-        int j=left;
-        while(j!=(start_block+1)*p){
-            ans+=arr[j];
-            j++;
-        }
-        j=(end_block*p);
-        while(j!=right+1){
-            ans+=arr[j];
-            j++;
-        }
+
+        // int j=left;
+        // while(j!=(start_block+1)*p){
+        //     ans+=arr[j];
+        //     j++;
+        // }
+        // j=(end_block*p);
+        // while(j!=right+1){
+        //     ans+=arr[j];
+        //     j++;
+        // }
+
+        for(int i=left; i<((start_block+1)*p);i++) ans+=arr[i];
+        for(int i=(end_block*p);i<=right;i++) ans+=arr[i];
+
         return ans;
     }
 };
