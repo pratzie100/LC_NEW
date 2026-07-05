@@ -20,10 +20,12 @@ public:
         if(j==-1) break;
         suf[i]=j--;
        } 
-       if(suf[1]>0) return 1;
-       if(pre[n-2]!=-1 && pre[n-2]<m-1) return 1;
+       if(suf[1]>0) return 1; //replace only first char in s
+       if(pre[n-2]!=-1 && pre[n-2]<m-1) return 1; //replace only last char in s
        for(int i=1;i<n-1;i++){
-        if(pre[i-1]==-1 || suf[i+1]==-1) continue;
+        //checking validity for replacing any one char of s present in middle
+        if(pre[i-1]==-1 || suf[i+1]==-1) continue; //both prefix and suffix substrings before and after should be valid..this is invalid case
+        
         if(suf[i+1]-pre[i-1]>=2) return true;
        }
        return false;
