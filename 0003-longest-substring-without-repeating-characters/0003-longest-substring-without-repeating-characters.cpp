@@ -1,38 +1,58 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // int t = 0;
-        // unordered_set<char> c;
-        // int l = 0,r = 0;
-        // for(r = 0;r < s.length(); r++){
-        //     if( c.count(s[r]) == 0){
-        //         c.insert(s[r]);
-        //         t = max(t, r-l+1);
-        //     }else{
-        //         while(c.count(s[r])){
-        //             c.erase(s[l]);
-        //             l++;
-        //         }
-        //         c.insert(s[r]);
-        //     }
-        // }
-        // return t;
-        unordered_map<int,int>m;
-        int l=0,r=0;
         int n=s.size();
-        int ans=0;
-        while(r<n)
-        {
-            m[s[r]-'a']++;
-            while(m[s[r]-'a']>1)
-            {
-                m[s[l]-'a']--;
-                //if(m[s[l]]==0)m.erase(s[l]); not necessary
-                l++;
+        unordered_map<char,int>m;
+         int ans=0;
+        // for(char &c:s){
+        //     m[c]++;
+        //     if(m[c]>=2){ 
+        //         auto it=m.lower_bound(c);
+        //         it->second=(i->second)-1;
+        //         it++;
+
+        //     }
+          
+
+
+            
+        //     st.insert(c);
+        //     int k=st.size();
+            
+        //     ans=max(ans,k);
+        // }
+
+    //  int l=0,r=0;
+    //     for(int i=0;i<n;){
+            
+    //         r=i+1;
+    //         while(r<n && s[l]!=s[r]  ){
+    //             r++;
+    //             ans=max(ans,r-l+1);
+    //         }
+            
+    //         i=l+1;
+    //         //abcaz
+    //         //abcbz
+    //     }
+
+
+        int l=0,r=0;
+        while(r<n){
+            // m[s[r]]++;
+            auto it=m.find(s[r]);
+            if( it !=m.end() && m[s[r]]>=l){
+                l=m[s[r]]+1;
+               // m.clear();
+               m.erase(it);
             }
+
+            
+            m[s[r]]=r;
             ans=max(ans,r-l+1);
             r++;
         }
+
         return ans;
     }
 };
