@@ -96,11 +96,15 @@ public:
         }
         each(x,s){
             m[x]--;
-            if(m[x]==0) m.erase(x);        
+            // if(m[x]==0) m.erase(x);        
         }
 
-        auto it=begin(m);
-        return it->F;
+         each(it,m){
+            if(it.S==1) return it.F;
+         }
+         return ' ';
+        // auto it=begin(m);
+        // return it->F;
 
     }
 };
