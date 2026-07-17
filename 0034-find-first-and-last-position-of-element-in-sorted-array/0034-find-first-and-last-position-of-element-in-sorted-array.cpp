@@ -278,7 +278,7 @@ public:
 
 
  int n=sz(nums);
-if(n==0) return {-1,-1};
+// if(n==0) return {-1,-1};
         int l=0;
         int h=n-1;
 
