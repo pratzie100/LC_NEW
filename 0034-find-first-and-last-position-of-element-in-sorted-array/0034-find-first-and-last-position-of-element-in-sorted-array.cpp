@@ -277,57 +277,86 @@ public:
 
 
 
- int n=sz(nums);
-// if(n==0) return {-1,-1};
-        int l=0;
-        int h=n-1;
+//  int n=sz(nums);
+// // if(n==0) return {-1,-1};
+//         int l=0;
+//         int h=n-1;
 
 
-        while(l<=h){
-            int mid= l+(h-l)/2;
-            if(nums[mid]<target){
-                l=mid+1;
-            }
-            else if(nums[mid]> target){
-                h=mid-1;
-            }
-            else{
-                h=mid-1;
-            }
-            debug(l,h);
-        }
-        //h is now at l-1;
-        //our starting index, if present, will be at l
-        //otherwise it will go out of bounds so check both
-        debug(l,h);
-        int ans1=(l>=0 && l<=n-1 && nums[l]==target) ? l : -1;
-debug(ans1);
-        int low=0;
-        int high=n-1;
+//         while(l<=h){
+//             int mid= l+(h-l)/2;
+//             if(nums[mid]<target){
+//                 l=mid+1;
+//             }
+//             else if(nums[mid]> target){
+//                 h=mid-1;
+//             }
+//             else{
+//                 h=mid-1;
+//             }
+//             debug(l,h);
+//         }
+//         //h is now at l-1;
+//         //our starting index, if present, will be at l
+//         //otherwise it will go out of bounds so check both
+//         debug(l,h);
+//         int ans1=(l>=0 && l<=n-1 && nums[l]==target) ? l : -1;
+// debug(ans1);
+//         int low=0;
+//         int high=n-1;
 
-        while(low<=high){
-            int mid=low+(high-low)/2;
-            debug(mid);
-            if(nums[mid]<target){
-                low=mid+1;
-            }
-            else if(nums[mid]>target){
-                high=mid-1;
-            }
-            else{
+//         while(low<=high){
+//             int mid=low+(high-low)/2;
+//             debug(mid);
+//             if(nums[mid]<target){
+//                 low=mid+1;
+//             }
+//             else if(nums[mid]>target){
+//                 high=mid-1;
+//             }
+//             else{
                
-                low=mid+1;
-            }
-               debug(low,high);
-        }
+//                 low=mid+1;
+//             }
+//                debug(low,high);
+//         }
 
-      //high is again at low-1;  lol
-      //but careful of high=-1;
-        //our ending index, if present, will be at high
-        //otherwise it will go out of bounds so check both
+//       //high is again at low-1;  lol
+//       //but careful of high=-1;
+//         //our ending index, if present, will be at high
+//         //otherwise it will go out of bounds so check both
         
-        int ans2=(high>=0 && high<=n-1 && nums[high]==target) ? high : -1;
+//         int ans2=(high>=0 && high<=n-1 && nums[high]==target) ? high : -1;
 
+//         return {ans1,ans2};
+
+
+        auto it1= lb(all(nums),target);
+        int idx1= it1-begin(nums);
+        //finding element through lb is less risky 
+        //as there will never be underflow condition ()
+        //Since there is equality condition '>=' 
+        //so we can always check at same idx 
+        //maximum it will go to container.end() which we
+        //can also initially check
+        int ans1= (it1!=end(nums) && nums[idx1]==target)? idx1: -1;
+
+        auto it2= ub(all(nums),target);
+        int idx2= it2-begin(nums);
+        //finding element through ub is more risky 
+        //as there is  strictly > condition, so we need to check presence at one index less than what pointed by ub
+        // and if element we search for is minimum element,
+          //  out of all array values,  then ub will point to begin element
+          //and checking begin() - 1 index can cause underfloww
+
+            //we are only concerned with accesing ub-1 index,
+            //so even if ub points to container.end(), there will be
+            //no overflow or out of bound error...but we only need
+            //to concern, if ub points to v.begin()..so in that case element not found 
+        
+        //we need to  initially check ub dont point to container.begin()
+
+        int ans2= (it2!=begin(nums) && nums[idx2-1]==target)? idx2-1: -1;
         return {ans1,ans2};
     }
 };
