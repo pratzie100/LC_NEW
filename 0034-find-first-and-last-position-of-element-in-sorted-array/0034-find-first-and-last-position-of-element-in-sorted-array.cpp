@@ -297,6 +297,8 @@ public:
             debug(l,h);
         }
         //h is now at l-1;
+        //our starting index, if present, will be at l
+        //otherwise it will go out of bounds so check both
         debug(l,h);
         int ans1=(l>=0 && l<=n-1 && nums[l]==target) ? l : -1;
 debug(ans1);
@@ -318,13 +320,14 @@ debug(ans1);
             }
                debug(low,high);
         }
+
       //high is again at low-1;  lol
       //but careful of high=-1;
-
-      debug(low,high);
+        //our ending index, if present, will be at high
+        //otherwise it will go out of bounds so check both
         
         int ans2=(high>=0 && high<=n-1 && nums[high]==target) ? high : -1;
-debug(ans2);
+
         return {ans1,ans2};
     }
 };
