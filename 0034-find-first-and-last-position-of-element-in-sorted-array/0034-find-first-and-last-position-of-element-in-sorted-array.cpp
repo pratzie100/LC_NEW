@@ -331,30 +331,21 @@ public:
 //         return {ans1,ans2};
 
 
+
+
         auto it1= lb(all(nums),target);
         int idx1= it1-begin(nums);
-        //finding element through lb is less risky 
-        //as there will never be underflow condition ()
-        //Since there is equality condition '>=' 
-        //so we can always check at same idx 
-        //maximum it will go to container.end() which we
-        //can also initially check
+        
+        // Finding the first occurrence using lower_bound is safe from underflow. Because it looks for elements >= target, the lowest iterator it can return is begin(nums). Since we check the element at exactly idx1, we only need to guard against overflow (going off the right cliff) by checking it1 != end(nums).
+
         int ans1= (it1!=end(nums) && nums[idx1]==target)? idx1: -1;
 
         auto it2= ub(all(nums),target);
         int idx2= it2-begin(nums);
-        //finding element through ub is more risky 
-        //as there is  strictly > condition, so we need to check presence at one index less than what pointed by ub
-        // and if element we search for is minimum element,
-          //  out of all array values,  then ub will point to begin element
-          //and checking begin() - 1 index can cause underfloww
-
-            //we are only concerned with accesing ub-1 index,
-            //so even if ub points to container.end(), there will be
-            //no overflow or out of bound error...but we only need
-            //to concern, if ub points to v.begin()..so in that case element not found 
-        
-        //we need to  initially check ub dont point to container.begin()
+   
+        // Finding the last occurrence using upper_bound requires caution. Because it looks for elements strictly > target, the actual target will live  at one index prior (idx2 - 1). 
+        // Even if upper_bound returns end(nums), stepping back by 1 is completely safe. However, if the target is smaller than every element in the array, upper_bound returns begin(nums). Accessing idx2 - 1 here would cause an underflow crash.
+        // Therefore, we must explicitly guard against the left cliff: it2 != begin(nums).
 
         int ans2= (it2!=begin(nums) && nums[idx2-1]==target)? idx2-1: -1;
         return {ans1,ans2};
