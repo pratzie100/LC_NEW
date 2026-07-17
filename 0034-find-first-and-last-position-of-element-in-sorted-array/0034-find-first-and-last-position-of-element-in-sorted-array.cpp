@@ -236,12 +236,53 @@ public:
 
 
 
- int n=sz(nums);
+//  int n=sz(nums);
 
+//         int l=0;
+//         int h=n-1;
+//         int ans1=-1;
+
+//         while(l<=h){
+//             int mid= l+(h-l)/2;
+//             if(nums[mid]<target){
+//                 l=mid+1;
+//             }
+//             else if(nums[mid]> target){
+//                 h=mid-1;
+//             }
+//             else{
+//                 ans1=mid;
+//                 h=mid-1;
+//             }
+//         }
+
+//         int low=0;
+//         int high=n-1;
+//         int ans2=-1;
+
+//         while(low<=high){
+//             int mid=low+(high-low)/2;
+//             if(nums[mid]<target){
+//                 low=mid+1;
+//             }
+//             else if(nums[mid]>target){
+//                 high=mid-1;
+//             }
+//             else{
+//                 ans2=mid;
+//                 low=mid+1;
+//             }
+//         }
+//         return {ans1,ans2};
+
+
+
+ int n=sz(nums);
+if(n==0) return {-1,-1};
         int l=0;
         int h=n-1;
-        int ans1=-1;
-        //int mini=INT_MAX;
+
+
         while(l<=h){
             int mid= l+(h-l)/2;
             if(nums[mid]<target){
@@ -251,18 +292,20 @@ public:
                 h=mid-1;
             }
             else{
-              //  mini=min(mini,mid);
-                ans1=mid;
                 h=mid-1;
             }
+            debug(l,h);
         }
-
+        //h is now at l-1;
+        debug(l,h);
+        int ans1=(l>=0 && l<=n-1 && nums[l]==target) ? l : -1;
+debug(ans1);
         int low=0;
         int high=n-1;
-        int ans2=-1;
-       // int maxi=INT_MIN;
+
         while(low<=high){
             int mid=low+(high-low)/2;
+            debug(mid);
             if(nums[mid]<target){
                 low=mid+1;
             }
@@ -270,10 +313,18 @@ public:
                 high=mid-1;
             }
             else{
-                ans2=mid;
+               
                 low=mid+1;
             }
+               debug(low,high);
         }
+      //high is again at low-1;  lol
+      //but careful of high=-1;
+
+      debug(low,high);
+        
+        int ans2=(high>=0 && high<=n-1 && nums[high]==target) ? high : -1;
+debug(ans2);
         return {ans1,ans2};
     }
 };
