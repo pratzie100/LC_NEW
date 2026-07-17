@@ -190,12 +190,58 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         
-        int n=sz(nums);
+        // int n=sz(nums);
+
+        // int l=0;
+        // int h=n-1;
+        // int ans1=-1;
+        // int mini=INT_MAX;
+        // while(l<=h){
+        //     int mid= l+(h-l)/2;
+        //     if(nums[mid]<target){
+        //         l=mid+1;
+        //     }
+        //     else if(nums[mid]> target){
+        //         h=mid-1;
+        //     }
+        //     else{
+        //         mini=min(mini,mid);
+        //         h=mid-1;
+        //     }
+        // }
+        // if(mini!=INT_MAX){
+        //     ans1=mini;
+        // }
+
+        // int low=0;
+        // int high=n-1;
+        // int ans2=-1;
+        // int maxi=INT_MIN;
+        // while(low<=high){
+        //     int mid=low+(high-low)/2;
+        //     if(nums[mid]<target){
+        //         low=mid+1;
+        //     }
+        //     else if(nums[mid]>target){
+        //         high=mid-1;
+        //     }
+        //     else{
+        //         maxi=max(maxi,mid);
+        //         low=mid+1;
+        //     }
+        // }
+        // if(maxi!=INT_MIN) ans2=maxi;
+
+        // return {ans1,ans2};
+
+
+
+ int n=sz(nums);
 
         int l=0;
         int h=n-1;
         int ans1=-1;
-        int mini=INT_MAX;
+        //int mini=INT_MAX;
         while(l<=h){
             int mid= l+(h-l)/2;
             if(nums[mid]<target){
@@ -205,20 +251,16 @@ public:
                 h=mid-1;
             }
             else{
-                mini=min(mini,mid);
+              //  mini=min(mini,mid);
+                ans1=mid;
                 h=mid-1;
             }
         }
-        if(mini!=INT_MAX){
-            ans1=mini;
-        }
-
-        //int tmp=target+1;
 
         int low=0;
         int high=n-1;
         int ans2=-1;
-        int maxi=INT_MIN;
+       // int maxi=INT_MIN;
         while(low<=high){
             int mid=low+(high-low)/2;
             if(nums[mid]<target){
@@ -228,14 +270,10 @@ public:
                 high=mid-1;
             }
             else{
-                maxi=max(maxi,mid);
+                ans2=mid;
                 low=mid+1;
             }
         }
-        if(maxi!=INT_MIN) ans2=maxi;
-
         return {ans1,ans2};
-
-
     }
 };
