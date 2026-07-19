@@ -190,7 +190,7 @@ class Solution {
 public:
     vector<int> occurrencesOfElement(vector<int>& nums, vector<int>& queries, int x) {
         int n=sz(nums);
-        map<int,vi>m;
+        um<int,vi>m;
         f(i,0,n){
             m[nums[i]].pb(i);
         }
@@ -203,9 +203,9 @@ public:
             if(queries[i]>m[x].size()) continue;
             auto it= m[x].begin()+queries[i]-1;
 debug(i,*it);
-            if(it!=m[x].end()){
+            //if(it!=m[x].end()){
             ans[i]=  *(it);
-            }
+           // }
         }    
         return ans;
     }
