@@ -193,29 +193,74 @@ const ll MOD2 = 998244353LL;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // for(int i=0;i<nums.size()-1;i++)
-        // {
-        //     for(int j=i+1;j<nums.size();j++)
-        //     {
-        //         if(nums[i]+nums[j]==target)
+         // int n=sz(nums);
+        // f(i,0,n-1){
+        //     f(j,i+1,n){
+        //         if(nums[i]+nums[j] == target){
         //             return {i,j};
+        //         }
+        //     }
+        // }
+        // return{-1,-1};
+
+
+
+        // int n=sz(nums);
+        // umm<int,int>m;
+        // int id=0;
+        // f(i,0,n){
+
+        //     m.insert(make_pair(nums[i],i));
+        // }
+        // f(i,0,n){
+        //     int comp=target-nums[i];
+        //     auto it=m.find(comp);
+        //     if(it!=m.end() && i!= it->second){
+        //         return {i,it->second};
         //     }
         // }
         // return {-1,-1};
 
-        // Iterate through the array and check for complements
-        unordered_map<int,int> m;
-        for(int i = 0; i < nums.size(); i++)
-        {
+
+
+        // int n=sz(nums);
+        // um<int,int>m;
+        // f(i,0,n){
+        //     int comp=target-nums[i];
+        //     if(m.count(comp)){
+
+        //         return (i>m[comp]) ? vi{m[comp],i} : vi{i,m[comp]} ;
+        //     }
+        //     m[nums[i]]=i;
+        // }
+        // return {-1,-1};
+
+
+
+
+
+        // int n=sz(nums);
+        // um<int,int>m;
+        // f(i,0,n){
+        //     int comp=target-nums[i];
+        //     if(m.count(comp)){
+        //         if(i>m[comp]) return {m[comp],i};
+        //         else return {i,m[comp]};
+        //     }
+        //     m[nums[i]]=i;
+        // }
+        // return {-1,-1};
+
+
+        int n=sz(nums);
+        um<int,int>m;
+        f(i,0,n){
             int comp=target-nums[i];
-             //element will exist in array if it is present as key in map
-             //If you call m.count(key) on an std::unordered_map named m, it will return the number of elements with the specified key in m. The count will be either 0 (if the key does not exist in the map) or 1 (if the key exists).
-             // If the complement exists in the map, return the indices
-            if(m.count(comp)>0)
-                return {i, m[comp]};    
-            // Add the current number and its index to the map
+            if(m.count(comp)){
+                return {m[comp],i};
+            }
             m[nums[i]]=i;
-       }
-       return {-1,-1};
+        }
+        return {-1,-1};
     }
 };
