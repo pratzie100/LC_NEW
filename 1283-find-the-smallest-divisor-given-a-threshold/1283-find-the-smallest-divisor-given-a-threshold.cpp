@@ -219,7 +219,7 @@ public:
             }
             else{
                 //ans=min(ans,mid);
-                high=mid-1;
+                high=mid-1; //check if a smaller divisor still keeps sum within threshold.
             }
         }
         return low;
