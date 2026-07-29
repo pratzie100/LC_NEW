@@ -218,11 +218,13 @@ public:
                 low=mid+1; //to make current state check(nums,mid) smaller, divisor should be bigger go right
             }
             else{
-                //ans=min(ans,mid);
+                ans=min(ans,mid);
                 high=mid-1; //check if a smaller divisor still keeps sum within threshold.
             }
         }
-        return low;
+       // return low;
+       
+        return ans;
 
     }
 };
