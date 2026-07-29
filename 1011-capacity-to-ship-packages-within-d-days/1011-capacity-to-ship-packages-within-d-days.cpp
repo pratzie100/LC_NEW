@@ -223,11 +223,11 @@ public:
                 low=mid+1;
             }
             else{
-                ans=min(ans,mid);
+               // ans=min(ans,mid);
                 high=mid-1;
             }
         }
-        //return low;
-        return ans;
+        return low;
+     //   return ans;
     }
 };
