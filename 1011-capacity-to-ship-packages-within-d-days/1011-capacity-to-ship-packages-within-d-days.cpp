@@ -198,7 +198,6 @@ const ll MOD2 = 998244353LL;
 class Solution {
 public:
     int check(int capacity, vi &weights, int days,int n){
-        debug(capacity);
         int d=1;
         int s=0;
         f(i,0,n){
