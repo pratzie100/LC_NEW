@@ -18,7 +18,7 @@ public:
 
 
     int climbStairs(int n) {
-       vector<int>dp(n+2);
+       vector<int>dp(n+2); //n+1 error for n=1 since dp[2] not defined
        dp[1]=1;
        dp[2]=2;
        for(int i=3;i<=n;i++){
